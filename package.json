@@ -1,0 +1,22 @@
+{
+  "name": "task-manager-devops",
+  "version": "1.0.0",
+  "description": "API simples de gerenciamento de tarefas para projeto acadêmico de DevOps",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "jest --runInBand",
+    "build": "node --check src/app.js && node --check src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
