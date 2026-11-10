@@ -1,3 +1,4 @@
+
 terraform {
   required_version = ">= 1.5.0"
 
@@ -10,21 +11,18 @@ terraform {
 }
 
 provider "docker" {
-  # Usa o Docker Engine local configurado na máquina.
+  host = "npipe:////./pipe/dockerDesktopLinuxEngine"
 }
 
-resource "docker_image" "task_manager" {
+# Utiliza a imagem que já foi construída no Docker
+data "docker_image" "task_manager" {
   name = "task-manager-devops:1.0"
-
-  build {
-    context    = ".."
-    dockerfile = "Dockerfile"
-  }
 }
 
+# Cria o container da aplicação
 resource "docker_container" "task_manager" {
   name  = "task-manager-devops"
-  image = docker_image.task_manager.image_id
+  image = data.docker_image.task_manager.id
 
   ports {
     internal = 3000
