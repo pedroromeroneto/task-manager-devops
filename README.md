@@ -1,73 +1,214 @@
-# Task Manager - Projeto DevOps
+# \# Task Manager — Projeto DevOps
 
-API REST simples para cadastro e gerenciamento de tarefas, desenvolvida como projeto acadêmico da disciplina DevOps na Prática.
+# 
 
-## Tecnologias
+# API REST para gerenciamento de tarefas, desenvolvida como projeto acadêmico da disciplina DevOps.
 
-- Node.js 20
-- JavaScript e Express
-- Jest e Supertest para testes automatizados
-- GitHub Actions para integração contínua
-- Docker para empacotamento da aplicação
-- Terraform com provider Docker para provisionamento local do container
+# 
 
-## Requisitos
+# \## Tecnologias utilizadas
 
-- Node.js 20 ou superior
-- npm
-- Git
-- Docker Engine/Desktop em execução
-- Terraform 1.5 ou superior (para a etapa de infraestrutura)
+# 
 
-## Executar localmente
+# \- Node.js 20
 
-```bash
-npm install
-npm start
-```
+# \- Express
 
-A API ficará disponível em `http://localhost:3000`.
+# \- Jest e Supertest
 
-## Endpoints
+# \- GitHub Actions
 
-| Método | Rota | Descrição |
-|---|---|---|
-| GET | `/health` | Verifica a saúde da API |
-| GET | `/tasks` | Lista tarefas |
-| POST | `/tasks` | Cria uma tarefa (`{"title":"Estudar DevOps"}`) |
-| PATCH | `/tasks/:id` | Atualiza título e/ou status |
-| DELETE | `/tasks/:id` | Exclui uma tarefa |
+# \- Docker
 
-## Testes e build
+# \- Docker Compose
 
-```bash
-npm test
-npm run build
-```
+# \- GitHub Container Registry (GHCR)
 
-## Infraestrutura local com Terraform
+# \- Terraform
 
-Com o Docker em execução:
+# 
 
-```bash
-cd terraform
-terraform init
-terraform plan
-terraform apply
-```
+# \## Funcionalidades da API
 
-Para remover os recursos criados:
+# 
 
-```bash
-terraform destroy
-```
+# \- `GET /health` — verifica a saúde da aplicação.
 
-A aplicação provisionada ficará disponível em `http://localhost:3000`.
+# \- `GET /tasks` — lista as tarefas.
 
-## Integração contínua
+# \- `POST /tasks` — cadastra uma tarefa.
 
-O workflow `.github/workflows/ci.yml` executa em pushes e pull requests direcionados à branch `main`. Ele instala as dependências, verifica a sintaxe e executa os testes automatizados.
+# \- `PATCH /tasks/:id` — atualiza uma tarefa.
 
-## Observação
+# \- `DELETE /tasks/:id` — exclui uma tarefa.
 
-Esta primeira versão armazena tarefas em memória. Os dados são reiniciados quando o processo/container é reiniciado. O objetivo é demonstrar o fluxo de desenvolvimento, testes, CI e provisionamento local, não oferecer armazenamento persistente para produção.
+# 
+
+# \## Fase 1 — Integração Contínua e Infraestrutura
+
+# 
+
+# \- Configuração do repositório Git.
+
+# \- Pipeline de CI com GitHub Actions.
+
+# \- Build e testes automatizados.
+
+# \- Containerização com Docker.
+
+# \- Provisionamento do container com Terraform.
+
+# 
+
+# \## Fase 2 — Entrega Contínua e Deploy
+
+# 
+
+# \- Expansão do GitHub Actions para CI/CD.
+
+# \- Construção e publicação automática da imagem Docker no GHCR após aprovação dos testes.
+
+# \- Gerenciamento do container com Docker Compose.
+
+# \- Script PowerShell para automatizar o deploy.
+
+# \- Healthcheck para monitoramento da disponibilidade da API.
+
+# 
+
+# \## Executar localmente com Docker Compose
+
+# 
+
+# Requisitos: Docker Desktop e Docker Compose.
+
+# 
+
+# ```powershell
+
+# docker compose pull
+
+# docker compose up -d
+
+# ```
+
+# 
+
+# A aplicação ficará disponível em:
+
+# 
+
+# http://localhost:3001
+
+# 
+
+# Verificar o estado do container:
+
+# 
+
+# ```powershell
+
+# docker compose ps
+
+# ```
+
+# 
+
+# Consultar os logs:
+
+# 
+
+# ```powershell
+
+# docker compose logs --tail 20
+
+# ```
+
+# 
+
+# \## Executar o deploy automatizado
+
+# 
+
+# No PowerShell, execute:
+
+# 
+
+# ```powershell
+
+# .\\deploy.ps1
+
+# ```
+
+# 
+
+# O script baixa a imagem mais recente do GHCR, atualiza o container e verifica a saúde da API.
+
+# 
+
+# \## Executar testes
+
+# 
+
+# Instalar dependências:
+
+# 
+
+# ```powershell
+
+# npm ci
+
+# ```
+
+# 
+
+# Executar build:
+
+# 
+
+# ```powershell
+
+# npm run build
+
+# ```
+
+# 
+
+# Executar testes:
+
+# 
+
+# ```powershell
+
+# npm test
+
+# ```
+
+# 
+
+# \## Limitações conhecidas
+
+# 
+
+# \- Os dados das tarefas são armazenados em memória e são perdidos quando o container é recriado.
+
+# \- O deploy é executado manualmente na máquina local por meio do script PowerShell.
+
+# \- A aplicação utiliza um único serviço de container, sem orquestração distribuída.
+
+# 
+
+# \## Repositório
+
+# 
+
+# https://github.com/pedroromeroneto/task-manager-devops
+
+# 
+
+# \## Imagem Docker
+
+# 
+
+# ghcr.io/pedroromeroneto/task-manager-devops:latest
+
